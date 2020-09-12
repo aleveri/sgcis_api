@@ -33,11 +33,12 @@ namespace SGCIS_API.Services
 
         public async Task<bool> UpdatePerson(Person person)
         {
-            try { await Delete(person.Id.ToString()); }
+            try
+            {
+                await Add(person.Id.ToString(), person);
+                return true;
+            }
             catch (Exception) { return false; }
-
-            await Add(person.Id.ToString(), person); ;
-            return true;
         }
     }
 }

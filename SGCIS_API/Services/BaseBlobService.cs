@@ -37,7 +37,7 @@ namespace SGCIS_API.Services
 
         public async Task Delete(string id)
         {
-            _blobClient = _containerClient.GetBlobClient(id);
+            _blobClient = _containerClient.GetBlobClient($"{id}.json");
             await _blobClient.DeleteIfExistsAsync();
         }
 

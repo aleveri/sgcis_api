@@ -22,14 +22,14 @@ namespace SGCIS_API.Controllers
         }
 
         [HttpGet]
-        public ActionResponse GetPersons()
+        public async Task<ActionResponse> GetPersons()
         {
             try
             {
                 return new ActionResponse()
                 {
                     Code = (int)HttpStatusCode.OK,
-                    Result = _personBlobService.GetList()
+                    Result = await _personBlobService.GetList()
                 };
             }
             catch (Exception ex)
@@ -44,7 +44,7 @@ namespace SGCIS_API.Controllers
         }
 
         [HttpDelete]
-        public ActionResponse DeletePerson(int id)
+        public async Task<ActionResponse> DeletePerson(int id)
         {
             try
             {
@@ -56,7 +56,7 @@ namespace SGCIS_API.Controllers
                         Message = "id doesn't exist"
                     };
 
-                _personBlobService.DeletePerson(id.ToString());
+                await _personBlobService.DeletePerson(id.ToString());
 
                 return new ActionResponse()
                 {
